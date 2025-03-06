@@ -1,0 +1,202 @@
+<?php
+include_once 'database.php';
+$result = mysqli_query($conn,"SELECT * FROM blog");
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>table</title>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+
+
+
+
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!-- Owl-carousel CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha256-UhQQ4fxEeABh4JrcmAJ1+16id/1dnlOEVCFOxDef9Lw=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha256-kksNxjDRxd/5+jGurZUJd1sdR2v+ClrCl3svESBaJqw=" crossorigin="anonymous" />
+
+    <!-- font awesome icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
+
+    <!-- Custom CSS file -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/sinup.css">
+
+
+
+
+
+
+
+
+
+
+
+</head>
+<body>
+<header id="header">
+      <div class="strip d-flex justify-content-between px-4 py-1 bg-light">
+          <p class="font-rale font-size-12 text-black-50 m-0">DayBix is most popular ecommerce site in Bangladesh</p>
+          <div class="font-rale font-size-14">
+              <a href="login.html" class="px-3 border-right border-left text-dark">Login</a>
+              
+          </div>
+      </div>
+
+      <!-- Primary Navigation -->
+      
+
+
+      <nav class="navbar navbar-expand-lg navbar-dark color-second-bg">
+          <a class="navbar-brand logoo" href="index.html"><p class="logo">DayBix - admin</p></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav m-auto font-rubik">
+              
+              <li class="nav-item">
+                <a class="nav-link" href="tableorder.php">Order list</a></li>
+
+                <li class="nav-item">
+                  <a class="nav-link" href="tableblog.php">Blog</a>
+                </li>
+              
+              <li class="nav-item">
+                <a class="nav-link" href="tableemployee.php">Employee</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="tableproduct.php">Product</a>
+              </li>
+              
+              <li class="nav-item">
+                  <a class="nav-link" href="tablecustomer.php">Customer</a>
+                </li>
+
+                <li class="nav-item">
+                  <a class="nav-link" href="tablecontact.php">Customer-Call</a>
+                </li>
+
+                <li class="nav-item">
+                  <a class="nav-link" href="searchadmin.php">search</a>
+                </li>
+                
+            </ul>
+            
+          </div>
+        </nav>
+         <!-- !Primary Navigation -->
+
+  </header>
+
+<div class="boxx">
+
+<div class="conteiner">
+
+<h1>Blog</h1>
+
+
+
+ <a href="formblog.html" class="btn btn-primary mb-3  ml-5">Add New</a>
+   
+
+
+    <?php
+if (mysqli_num_rows($result) > 0) {
+?>
+
+
+
+    <table class="table table-hover text-center">
+  <thead class="table-dark table-striped">
+    <tr>
+      <th scope="col">id</th>
+      <th scope="col">title:</th>
+      <th scope="col">text:</th>
+      
+      
+      <th scope="col">action</th>
+    </tr>
+  </thead>
+
+  <?php
+			$i=0;
+			while($row = mysqli_fetch_array($result)) {
+			?>
+  <tbody>
+
+  <tr>
+	    <td><?php echo $row["id"]; ?></td>
+
+		<td><?php echo $row["title"]; ?></td>
+
+		<td><?php echo $row["texts"]; ?></td>
+
+		<td>
+    <a class="btn btn-danger btn-sm" href="tableblogdelete.php?id=<?php echo $row["id"]; ?>">Delete</a></td>
+
+      </tr>
+			<?php
+			$i++;
+			}
+			?>
+
+
+  </tbody>
+</table>
+<?php
+}
+else
+{
+    echo "No result found";
+}
+?>
+</div>
+
+</div>
+
+
+
+
+
+
+
+
+  
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+    
+
+    <!-- Owl Carousel Js file -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha256-pTxD+DSzIwmwhOqTFN+DB+nHjO4iAsbgfyFq5K5bcE0=" crossorigin="anonymous"></script>
+
+    
+
+    <!--  isotope plugin cdn  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+
+
+ 
+    
+
+    <!-- Custom Javascript -->
+    <script src="index.js"></script>
+   
+</body>
+</html>
